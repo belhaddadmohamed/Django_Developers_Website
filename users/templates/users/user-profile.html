@@ -17,31 +17,31 @@
               <ul class="dev__social">
                 {% if profile.social_github %}
                 <li>
-                  <a title="Github" href="{{profile.social_github}}" target="_blank"><i class="ri-github-fill"></i></a>
+                  <a title="Github" href="{{profile.social_github}}" target="_blank"><i style="font-size: 35px;" class="ri-github-fill"></i></a>
                 </li>
                 {% endif %}
 
                 {% if profile.social_youtube %}
                 <li>
-                  <a title="Youtube" href="{{profile.social_youtube}}" target="_blank"><i class="ri-youtube-fill"></i></a>
+                  <a title="Youtube" href="{{profile.social_youtube}}" target="_blank"><i style="font-size: 35px;" class="ri-youtube-fill"></i></a>
                 </li>
                 {% endif %}
 
                 {% if profile.social_twitter %}
                 <li>
-                  <a title="Twitter" href="{{profile.social_twitter}}" target="_blank"><i class="ri-twitter-fill"></i></a>
+                  <a title="Twitter" href="{{profile.social_twitter}}" target="_blank"><i style="font-size: 35px;" class="ri-twitter-fill"></i></a>
                 </li>
                 {% endif %}
 
                 {% if profile.social_linkedin %}
                 <li>
-                  <a title="LinkedIn" href="{{profile.social_linkedin}}" target="_blank"><i class="ri-linkedin-fill"></i></a>
+                  <a title="LinkedIn" href="{{profile.social_linkedin}}" target="_blank"><i style="font-size: 35px;" class="ri-linkedin-fill"></i></a>
                 </li>
                 {% endif %}
 
                 {% if profile.social_website %}
                 <li>
-                  <a title="Personal Website" href="{{profile.social_website}}" target="_blank"><i class="ri-pages-fill"></i></a>
+                  <a title="Personal Website" href="{{profile.social_website}}" target="_blank"><i style="font-size: 35px;" class="ri-pages-fill"></i></a>
                 </li>
                 {% endif %}
 
@@ -60,8 +60,8 @@
           <div class="devInfo">
             <h3 class="devInfo__title">Skills</h3>
             <div class="devInfo__skills">
-
-              {% for skill in profile.skill_set.all %}
+              <!-- Skills with description -->
+              {% for skill in topSkills %}
                 <div class="devSkill">
                   <h4 class="devSkill__title">{{skill}}</h4>
                   <p class="devSkill__info">
@@ -72,11 +72,13 @@
 
               <h3 class="devInfo__subtitle">Other Skills</h3>
               <div class="devInfo__otherSkills">
-                {% for skill in profile.skill_set.all %}
+                <!-- Skills without description -->
+                {% for skill in otherSkills %}
                 <span class="tag tag--pill tag--sub tag--lg">
                   <small>{{skill}}</small>
                 </span>
                 {% endfor %}
+
               </div>
             </div>
           </div>
@@ -87,24 +89,23 @@
             {% for project in profile.project_set.all %}
               <div class="column">
                 <div class="card project">
-                  <a href="single-project.html" class="project">
-                    <img class="project__thumbnail" src="images/project-b.png" alt="project thumbnail" />
+                  <a href="{% url 'single-project' project.id %}" class="project">
+                    <img class="project__thumbnail" src="{{project.featured_image.url}}" alt="project thumbnail" />
                     <div class="card__body">
-                      <h3 class="project__title">DevSearch UI Design</h3>
-                      <p><a class="project__author" href="profile.html">By Shahriar P. Shuvo</a></p>
+                      <h3 class="project__title">{{project.title}}</h3>
+                      <p><a class="project__author" href="{% url 'user-profile' project.owner.id %}">By {{project.owner.name}}</a></p>
                       <p class="project--rating">
-                        <span style="font-weight: bold;">92%</span> Postitive
-                        Feedback (62 Votes)
+                        <span style="font-weight: bold;">{{project.vote_ratio}}%</span> Postitive
+                        Feedback ({{project.vote_total}} Vote{{project.vote_total | pluralize:"s"}})
                       </p>
                       <div class="project__tags">
-                        <span class="tag tag--pill tag--main">
-                          <small>NextJS</small>
-                        </span>
-                        <span class="tag tag--pill tag--main">
-                          <small>GraphQL</small>
-                        </span>
-                        <span class="tag tag--pill tag--main">
-                          <small>TypeScript</small>
+
+                        {% for tag in project.tags.all %}
+                          <span class="tag tag--pill tag--main">
+                            <small>{{tag}}</small>
+                          </span>
+                        {% endfor %}
+
                         </span>
                       </div>
                     </div>
