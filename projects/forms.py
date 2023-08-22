@@ -16,7 +16,7 @@ class ProjectForm(forms.ModelForm):
         
         # Loop over all the fields
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'input'})   # 'input' in a css class in my static folder
+            field.widget.attrs.update({'class': 'input'})   # 'input' is a css class (static -> css) 
         
         # For a single field
         # self.fields['title'].widget.attrs.update(({'placeholder': 'Add a title'}))

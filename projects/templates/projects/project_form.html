@@ -22,7 +22,7 @@
 
                     <div class="form__field">
                         {% for field in form %}
-                            <label for="formInput#text">{{field.label}}</label>
+                            {{field.label_tag}}
                             {{field}}
                         {% endfor %}
                     </div>    

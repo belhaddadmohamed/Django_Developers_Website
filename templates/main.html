@@ -28,9 +28,28 @@
     {% include 'navbar.html' %}
 
 
-    {% block content %}
+    <!-- Flush messages -->
+    <!-- Style docs: static/styles/index.html in 'Alert messages'-->
+    {% if messages %}
+        {% for message in messages %}
+            <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> -->
 
+            <div class="alert {% if message.tags %}alert--{{ message.tags }}{% endif %}" >
+                <p class="alert__message">{{message}}</p>
+                <button type="button" class="alert__close">x</button>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+
+
+    {% block content %}
+        <!-- Content -->
     {% endblock content %}
+
+
+    <script src="{% static 'uikit/app.js' %}"></script>
 
 </body>
 </html>
