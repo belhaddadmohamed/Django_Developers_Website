@@ -1,7 +1,8 @@
 {% extends 'main.html' %}
-<!-- {% load widget_tweaks %} -->
 
 {% block content %}
+
+
 
     <!-- Main Section -->
     <main class="formPage my-xl">
@@ -12,24 +13,22 @@
 
                 <form class="form" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <!-- Input:Text -->
-                    <!-- <div class="form__field">
-                        <label for="formInput#text">Text Field: </label>
-                        <input class="input input--text" id="formInput#text" type="text" name="text"
-                            placeholder="Enter text" />
-                        {% render_field form.title placeholder='Add a title khoya' class+='input input--text' id='formInput#text' %}
-                    </div> -->
 
-                    <div class="form__field">
-                        {% for field in form %}
+                    {% for field in form %}
+                        <!-- Input:Text -->
+                        <div class="form__field">
                             {{field.label_tag}}
                             {{field}}
-                        {% endfor %}
-                    </div>    
-                        
+                        </div>
+                    {% endfor %}
+
                     <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
                 </form>
             </div>
         </div>
     </main>
+
+
+
+
 {% endblock content %}

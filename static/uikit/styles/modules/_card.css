@@ -45,3 +45,9 @@
 .card.card--dark .card__header {
   box-shadow: var(--generic-shadow);
 }
+
+
+/* NOTE: I add this rule (width -> 100%) */
+.card.project .project{
+  width: 100%;
+}
