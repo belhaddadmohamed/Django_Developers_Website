@@ -22,3 +22,6 @@
 @import url('./modules/_loading.css');
 @import url('./modules/_grid.css');
 @import url('./modules/_layout.css');
+
+/* Module added by: Belhaddad mohamed islem */
+@import url('./modules/_notification.css');

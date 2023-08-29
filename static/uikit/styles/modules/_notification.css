@@ -1,0 +1,47 @@
+
+li.dots {
+    position: relative;
+}
+
+li.dots span {
+    display: inline;
+    color: #e5e7eb;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    line-height: 30px;
+    text-align: center;
+    position: relative;
+}
+
+li.dots mark {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;   
+    border: 2px solid #FFF;
+    width: 20px;
+    height: 20px;  
+    background-color: #FF6B6B;
+    position: absolute;
+    top: -5px;
+    left: -10px;
+    font-size: 10px;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #FFF;
+    font-weight: 700;
+}
+
+li.dots mark.big {
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    line-height: 18px;
+    font-size: 12px;
+    top: -15px;
+    left: -20px;
+}

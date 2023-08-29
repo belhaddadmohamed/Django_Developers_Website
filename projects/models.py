@@ -20,6 +20,27 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def getVoteCount(self):
+        reviews = self.review_set.all()
+        upVote = reviews.filter(value='up').count()
+        totalVotes = reviews.count()
+        ratio = (upVote / totalVotes) * 100
+        print("the ratio= " + str(ratio))
+
+        self.vote_total = totalVotes
+        self.vote_ratio = ratio
+        self.save()
+
+    @property
+    def reviewers(self):
+        # Give me the list of 'id' of the reviewers of this project (flat means : convert it to a True list because it was an object)
+        queryset = self.review_set.all().values_list('owner__id', flat=True)
+        return queryset
+
+    class Meta:
+        ordering = ['-vote_ratio', '-vote_total', 'title']
+        
 
 
 class Review(models.Model):
@@ -34,8 +55,11 @@ class Review(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
+    class Meta:
+        unique_together = [['owner', 'project']]
+
     def __str__(self):
-        return self.value
+        return str(self.value) +" / "+ str(self.owner) +" / "+ str(self.project) 
 
 
 

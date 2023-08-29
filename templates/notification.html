@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <style>
+
+
+        ul.dots * {
+        /* disable border-box from bootstrap */
+        box-sizing: content-box;
+        list-style-type: none;  
+        }
+
+        ul.dots a {
+        text-decoration: none;
+        font-size: 20px;
+        color: #34495e;
+        }
+        ul.dots a:hover {
+        text-decoration: none;
+        font-size: 20px;
+        color: #bdc3c7;
+        }
+        ul.dots li {
+        display: box;
+        position: relative;
+        width: 100%;
+        padding: 10px 0 ;  
+        }
+
+        ul.dots li span {
+        display: block;
+        color: #bdc3c7;
+        padding: 10px;
+        width: 30px;
+        height: 30px;
+        margin: 0 auto;
+        line-height: 30px;
+        text-align: center;
+        position: relative;
+        }
+        
+        ul.dots li mark {
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;   
+        border: 2px solid #FFF;
+        width: 20px;
+        height: 20px;  
+        background-color: #FF6B6B;
+        position: absolute;
+        top: -5px;
+        left: -10px;
+        font-size: 10px;
+        line-height: 20px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        color: #FFF;
+        font-weight: 700;
+        }
+        ul.dots li mark.big {
+            width: 20px;
+            height: 20px;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;
+            line-height: 22px;
+            font-size: 12px;
+            top: -7px;
+            left: -14px;
+        }
+        ul.dots li mark.green {
+        background-color: #27ae60;
+        }
+        ul.dots li mark.blue {
+        background-color: #3498db;
+        }
+
+    </style>
+</head>
+<body>
+    
+
+
+
+
+    <ul class="dots">
+      <li>
+        <a href="#">
+            <span>
+                inbox
+                <mark class="big swing">7</mark>
+            </span>
+        </a>  
+      </li>
+    </ul> 
+
+    
+
+
+
+
+</body>
+</html>
+
+
+
+

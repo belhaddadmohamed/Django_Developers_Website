@@ -22,3 +22,14 @@ class ProjectForm(forms.ModelForm):
         # self.fields['title'].widget.attrs.update(({'placeholder': 'Add a title'}))
         # self.fields['description'].widget.attrs.update(({'placeholder': 'Write your Description'}))
 
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['value', 'body']
+
+    def __init__(self, *args, **kwargs):
+        super(ReviewForm, self).__init__(*args, **kwargs)
+
+        for _, field in self.fields.items():
+            field.widget.attrs.update({'class': 'input'})
