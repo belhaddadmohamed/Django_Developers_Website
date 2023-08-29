@@ -5,15 +5,30 @@ from .models import Profile
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 # This Signal will fire-up when the user is created (not updated !!!)
 def create_profile(sender, instance, created, **kwargs):
     if created:
         user = instance
-        Profile.objects.create(user = user,
+        profile = Profile.objects.create(user = user,
                                username = user.username,
                                email = user.email,
                                name = user.first_name)
 
+        # Send an email to this profile created
+        # Don't forget: You should activate 'less secure app' of the email host user http://myaccount.google.com/lesssecureapps
+        subject = 'Welcom to DevSearch'
+        message = str(profile.name) + ' we are happy to have you here in DevSearch 😁'
+
+        send_mail(
+            subject,
+            message, 
+            settings.EMAIL_HOST_USER,
+            [profile.email],
+            fail_silently=False,
+        )
 
 
 # This Signal will fire-up when the user is updated 

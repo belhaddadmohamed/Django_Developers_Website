@@ -18,7 +18,11 @@
             {% if request.user.is_authenticated %}
                 <li class="dots header__menuItem">
                     <a href="{% url 'inbox' %}">
-                        <span>Inbox {% if unreadCount %} <mark class="big swing"> {{unreadCount}}  </mark> {% endif %} </span>
+                        <span>Inbox 
+                            {% if request.user.profile.count_unread_messages %} 
+                                <mark class="big swing"> {{request.user.profile.count_unread_messages}}  </mark> 
+                            {% endif %} 
+                        </span>
                     </a>  
                 </li>
                 <!-- <li class="header__menuItem"><a href="{% url 'inbox' %}"><span>Inbox {% if unreadCount %} <mark class="big swing"> {{unreadCount}}  </mark> {% endif %}</span></a></li> -->

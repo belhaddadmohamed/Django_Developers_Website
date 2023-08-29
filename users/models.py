@@ -21,6 +21,11 @@ class Profile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
+    @property
+    def count_unread_messages(self):
+        unreadMessages = self.messages.all()         # 'messages' is of the recipient = the related_name in Message module and message_set for the sender 
+        return unreadMessages.filter(is_read=False).count()
+
     def __str__(self):
         return str(self.user.username)
     
@@ -40,7 +45,7 @@ class Skill(models.Model):
 
 class Message(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
-    # We will add 'related_name' to solve the confusion between message of recipient (profile.messages.all()) and sender (profile.message_set.all()) 
+    # We will add 'related_name' to solve the confusion between messages of recipient (profile.messages.all()) and sender (profile.message_set.all()) 
     recipient = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name="messages")
     name_sender = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=200, null=True, blank=True)
