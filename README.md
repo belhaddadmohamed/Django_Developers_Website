@@ -72,6 +72,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - The Django team for their incredible web framework.
 - Icons provided by [FontAwesome](https://fontawesome.com).
+- Icons provided by [RemixIcon](https://remixicon.com/).
 - Dennis Ivy for sharing his incredible work.
 
 ## Contact
