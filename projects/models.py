@@ -40,7 +40,7 @@ class Project(models.Model):
 
     class Meta:
         ordering = ['-vote_ratio', '-vote_total', 'title']
-        
+
 
 
 class Review(models.Model):

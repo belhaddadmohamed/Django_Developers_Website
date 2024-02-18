@@ -42,14 +42,22 @@ INSTALLED_APPS = [
     "projects.apps.ProjectsConfig",
     "users.apps.UsersConfig",
     "widget_tweaks",
+
+    "corsheaders",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     
+    # WHITENOISE
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     "django.contrib.sessions.middleware.SessionMiddleware",
+
+    # CORSHEADERS
+    "corsheaders.middleware.CorsMiddleware",
+
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -120,6 +128,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+# CORS_HEADERS: To allow users from different hosts access API
+# CORS_ALLOW_ALL_ORIGINS
+# CORS_ALLOWED_ORIGINS
+# CORS_ALLOWED_ORIGIN_REGEXES
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Email configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
