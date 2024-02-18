@@ -22,7 +22,6 @@ def getRoutes(request):
     return Response(routes)
 
 
-# Projects APIs ============================================
 
 @api_view(['GET'])
 def getProjects(request):
