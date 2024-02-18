@@ -5,7 +5,7 @@ from users.models import Profile
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .serializers import ProjectSerializer, ProfileSerializer, TagSerializer
+from .serializers import ProjectSerializer, TagSerializer
 
 
 @api_view(['GET'])
@@ -66,34 +66,4 @@ def createTag(request):
         serializer.save()
 
     return Response(serializer.data)
-
-
-# Users APIs ============================================
-
-@api_view(['GET'])
-def getProfiles(request):
-    profiles = Profile.objects.all()
-
-    serializer = ProfileSerializer(profiles, many=True)
-
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def getProfile(request, pk):
-    profile = Profile.objects.get(id=pk)
-
-    serializer = ProfileSerializer(profile, many=False)
-
-    return Response(serializer.data)
-
-
-@api_view(['POST'])
-def createProfile(request):
-    serializer = ProfileSerializer(data = request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response({"message": "Profile was created successfully", "profile": serializer.data})
 

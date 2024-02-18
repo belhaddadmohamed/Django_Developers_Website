@@ -3,16 +3,6 @@ from projects.models import Project, Tag, Review
 from users.models import Profile, Message, Skill
 
 
-# USERS ==========================================
-
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = '__all__'
-
-
-# PROJECTS ==========================================
-
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
