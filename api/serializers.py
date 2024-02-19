@@ -3,7 +3,6 @@ from projects.models import Project, Tag, Review
 from users.models import Profile, Message, Skill
 
 
-
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
@@ -25,16 +24,16 @@ class TagSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     owner = ProfileSerializer(many=False)
     tags = TagSerializer(many=True)
-    # reviews = serializers.SerializerMethodField()
+    reviews = serializers.SerializerMethodField()
 
-    # def get_reviews(self, obj):
-    #     reviews = obj.review_set.all()
-    #     serializer = ReviewSerializer(reviews, many=True)
-    #     return serializer
+    def get_reviews(self, obj):
+        reviews = obj.review_set.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return serializer
 
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ['title', 'description']
 
 
 
