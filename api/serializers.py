@@ -41,9 +41,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         allowed_fields = ['title', 'description']
         filtered_data = {key: value for key, value in validated_data.items() if key in allowed_fields}
         print(filtered_data)
-        obj = Project.objects.create(
-            title = filtered_data.title,
-            description = filtered_data.description)
+        obj = Project.objects.create(**filtered_data)
         return obj
 
 

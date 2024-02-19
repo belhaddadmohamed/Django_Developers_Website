@@ -4,6 +4,7 @@ from users.models import Profile
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 
 from .serializers import ProjectSerializer, TagSerializer
 
@@ -20,7 +21,6 @@ def getRoutes(request):
     ]
 
     return Response(routes)
-
 
 
 @api_view(['GET'])
@@ -48,17 +48,19 @@ def getTags(request):
     return Response(serializer.data)
 
 
+# Create Project
 @api_view(['POST'])
 def createProject(request):
     serializer = ProjectSerializer(data = request.data)
 
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     return Response(serializer.errors)
 
 
+# Create Tag
 @api_view(['POST'])
 def createTag(request):
     serializer = TagSerializer(data = request.data)
@@ -67,5 +69,5 @@ def createTag(request):
         serializer.save()
         return Response(serializer.data)
 
-    return Response(serializer.errors)
+    return Response(serializer.errors, status=status.HTTP_201_CREATED)
 
