@@ -39,6 +39,15 @@ def getProject(request, pk):
     return Response(serializer.data)
 
 
+
+@api_view(['GET'])
+def getTags(request):
+    tags = Tag.objects.all()
+    serializer = TagSerializer(tags, many=True)
+
+    return Response(serializer.data)
+
+
 @api_view(['POST'])
 def createProject(request):
     serializer = ProjectSerializer(data = request.data)
@@ -50,21 +59,13 @@ def createProject(request):
     return Response(serializer.errors)
 
 
-
-@api_view(['GET'])
-def getTags(request):
-    tags = Tag.objects.all()
-    serializer = TagSerializer(tags, many=True)
-
-    return Response(serializer.data)
-
-
 @api_view(['POST'])
 def createTag(request):
     serializer = TagSerializer(data = request.data)
 
     if serializer.is_valid():
         serializer.save()
+        return Response(serializer.data)
 
-    return Response(serializer.data)
+    return Response(serializer.errors)
 
