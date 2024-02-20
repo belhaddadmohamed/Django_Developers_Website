@@ -36,6 +36,7 @@ urlpatterns = [
     path('projects/', views.getProjects, name="projects-list"),
     path('projects/<uuid:pk>/', views.getProject, name="project"),
     path('create-project/', views.ProjectCreateView.as_view(), name="add-project"),
+    path('update-project/<uuid:pk>/', views.ProjectUpdateView.as_view(), name="update-project"),
     path('delete-project/<uuid:pk>/', views.ProjectDeleteView.as_view(), name="delete-project"),
 
     # Tag

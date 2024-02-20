@@ -47,7 +47,6 @@ def getProject(request, pk):
     return Response(serializer.data)
 
 
-# Create Project
 # @api_view(['POST'])
 # def createProject(request):
 #     serializer = ProjectSerializer(data = request.data)
@@ -58,11 +57,17 @@ def getProject(request, pk):
 
 #     return Response(serializer.errors)
 
+# Create Project
 @permission_classes([IsAuthenticated])
 class ProjectCreateView(generics.CreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
+# Update Project
+@permission_classes([IsAuthenticated])
+class ProjectUpdateView(generics.UpdateAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
 
 # Delete a project
 @permission_classes([IsAuthenticated])

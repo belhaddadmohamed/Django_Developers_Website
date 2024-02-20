@@ -35,14 +35,15 @@ class ProjectSerializer(serializers.ModelSerializer):
         model = Project
         fields = '__all__'
 
-    def create(self, validated_data):
-        print('Try to create new project...')
-        print(validated_data)
-        obj = Project.objects.create(
-            title = validated_data['title'],
-            description = validated_data['description'],
-        )
-        return obj
+    # def create(self, validated_data):
+    #     print('Try to create new project...')
+    #     print(validated_data)
+    #     obj = Project.objects.create(
+    #         title = validated_data['title'],
+    #         description = validated_data['description'],
+    #     )
+    #     return obj
+
 
 
 
