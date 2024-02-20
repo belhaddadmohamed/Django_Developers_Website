@@ -5,10 +5,13 @@ from users.models import Profile
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import generics
 
 from .serializers import ProjectSerializer, TagSerializer
 
 
+
+# Simple Documentation
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
@@ -23,6 +26,8 @@ def getRoutes(request):
     return Response(routes)
 
 
+
+# Get Projects list
 @api_view(['GET'])
 def getProjects(request):
     projects = Project.objects.all()
@@ -31,6 +36,8 @@ def getProjects(request):
     return Response(serializer.data)
 
 
+
+# Get a project
 @api_view(['GET'])
 def getProject(request, pk):
     project = Project.objects.get(id=pk)
@@ -40,12 +47,14 @@ def getProject(request, pk):
 
 
 
+# Get Tag list
 @api_view(['GET'])
 def getTags(request):
     tags = Tag.objects.all()
     serializer = TagSerializer(tags, many=True)
 
     return Response(serializer.data)
+
 
 
 # Create Project
@@ -60,6 +69,7 @@ def createProject(request):
     return Response(serializer.errors)
 
 
+
 # Create Tag
 @api_view(['POST'])
 def createTag(request):
@@ -71,3 +81,9 @@ def createTag(request):
 
     return Response(serializer.errors, status=status.HTTP_201_CREATED)
 
+
+
+# Delete All the projects
+class ProjectDeleteView(generics.DestroyAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer

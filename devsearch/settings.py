@@ -42,13 +42,15 @@ INSTALLED_APPS = [
 
     "projects.apps.ProjectsConfig",
     "users.apps.UsersConfig",
-    "widget_tweaks",
 
-    "corsheaders",
-    'rest_framework_swagger',
+
     "drf_yasg",
+    'rest_framework_swagger',
     'rest_framework_simplejwt',
     "rest_framework",
+    "widget_tweaks",
+    "corsheaders",
+    "import_export",
 ]
 
 MIDDLEWARE = [
