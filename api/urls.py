@@ -35,8 +35,8 @@ urlpatterns = [
     path('', views.getRoutes, name="list"),
     path('projects/', views.getProjects, name="projects-list"),
     path('projects/<uuid:pk>/', views.getProject, name="project"),
-    path('create-project/', views.createProject, name="add-project"),
-    path('delete-project/', views.ProjectDeleteView.as_view(), name="delete-project"),
+    path('create-project/', views.ProjectCreateView.as_view(), name="add-project"),
+    path('delete-project/<uuid:pk>/', views.ProjectDeleteView.as_view(), name="delete-project"),
 
     # Tag
     path('tags/', views.getTags, name="tags-list"),

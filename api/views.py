@@ -2,7 +2,8 @@ from django.shortcuts import render
 from projects.models import Project, Review, Tag
 from users.models import Profile
 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
@@ -46,6 +47,30 @@ def getProject(request, pk):
     return Response(serializer.data)
 
 
+# Create Project
+# @api_view(['POST'])
+# def createProject(request):
+#     serializer = ProjectSerializer(data = request.data)
+
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+#     return Response(serializer.errors)
+
+@permission_classes([IsAuthenticated])
+class ProjectCreateView(generics.CreateAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+
+# Delete a project
+@permission_classes([IsAuthenticated])
+class ProjectDeleteView(generics.DestroyAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+
 
 # Get Tag list
 @api_view(['GET'])
@@ -54,19 +79,6 @@ def getTags(request):
     serializer = TagSerializer(tags, many=True)
 
     return Response(serializer.data)
-
-
-
-# Create Project
-@api_view(['POST'])
-def createProject(request):
-    serializer = ProjectSerializer(data = request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    return Response(serializer.errors)
 
 
 
@@ -82,8 +94,3 @@ def createTag(request):
     return Response(serializer.errors, status=status.HTTP_201_CREATED)
 
 
-
-# Delete All the projects
-class ProjectDeleteView(generics.DestroyAPIView):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer

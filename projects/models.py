@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import mark_safe
 from users.models import Profile
 import uuid
 
@@ -19,6 +20,9 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def project_image(self):
+        return mark_safe('<img src="%s" width="100" height="80" />' % (self.featured_image.url))
 
     @property
     def getVoteCount(self):

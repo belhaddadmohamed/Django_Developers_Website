@@ -22,8 +22,8 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    owner = ProfileSerializer(many=False)
-    tags = TagSerializer(many=True)
+    # owner = ProfileSerializer(many=False)
+    # tags = TagSerializer(many=True)
     # reviews = serializers.SerializerMethodField()
 
     def get_reviews(self, obj):
@@ -38,10 +38,13 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         print('Try to create new project...')
-        allowed_fields = ['title', 'description']
-        filtered_data = {key: value for key, value in validated_data.items() if key in allowed_fields}
-        print(filtered_data)
-        obj = Project.objects.create(**filtered_data)
+        print(validated_data)
+        # allowed_fields = ['title', 'description']
+        # filtered_data = {key: value for key, value in validated_data.items() if key in allowed_fields}
+        obj = Project.objects.create(
+            title = validated_data['title'],
+            description = validated_data['description'],
+        )
         return obj
 
 
