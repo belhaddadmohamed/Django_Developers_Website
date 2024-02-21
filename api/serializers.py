@@ -43,8 +43,3 @@ class ProjectSerializer(serializers.ModelSerializer):
     #         description = validated_data['description'],
     #     )
     #     return obj
-
-
-
-
-

@@ -31,15 +31,17 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
+    # Routes
+    path('', views.getRoutes, name="route-list-api"),
+
     # Project
-    path('', views.getRoutes, name="list"),
-    path('projects/', views.getProjects, name="projects-list"),
-    path('projects/<uuid:pk>/', views.getProject, name="project"),
-    path('create-project/', views.ProjectCreateView.as_view(), name="add-project"),
-    path('update-project/<uuid:pk>/', views.ProjectUpdateView.as_view(), name="update-project"),
-    path('delete-project/<uuid:pk>/', views.ProjectDeleteView.as_view(), name="delete-project"),
+    path('projects/', views.getProjects, name="projects-list-api"),
+    path('projects/<uuid:pk>/', views.getProject, name="project-api"),
+    path('create-project/', views.ProjectCreateView.as_view(), name="add-project-api"),
+    path('update-project/<uuid:pk>/', views.ProjectUpdateView.as_view(), name="update-project-api"),
+    path('delete-project/<uuid:pk>/', views.ProjectDeleteView.as_view(), name="delete-project-api"),
 
     # Tag
-    path('tags/', views.getTags, name="tags-list"),
-    path('create-tag/', views.createTag, name="create-profile"),
+    path('tags/', views.getTags, name="tags-list-api"),
+    path('create-tag/', views.createTag, name="create-profile-api"),
 ]

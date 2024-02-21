@@ -58,7 +58,7 @@ def getProject(request, pk):
 #     return Response(serializer.errors)
 
 # Create Project
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 class ProjectCreateView(generics.CreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
