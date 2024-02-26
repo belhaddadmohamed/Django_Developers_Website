@@ -62,6 +62,7 @@ def getProject(request, pk):
 class ProjectCreateView(generics.CreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    # lookup_field = 'pk'
 
 # Update Project
 @permission_classes([IsAuthenticated])
