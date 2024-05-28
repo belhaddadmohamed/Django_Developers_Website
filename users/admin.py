@@ -1,8 +1,12 @@
 from django.contrib import admin
 from .models import Profile, Skill, Message
 
-# Register your models here.
 
-admin.site.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['username', 'email', 'short_intro', 'location']
+
+
+
+admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Skill)
 admin.site.register(Message)
